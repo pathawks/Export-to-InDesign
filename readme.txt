@@ -4,7 +4,7 @@ Donate link: http://www.pathawks.com
 Tags: export, post, indesign, print
 Requires at least: 3.1
 Tested up to: 3.1
-Stable tag: trunk
+Stable tag: 1.01
 
 Export a post as Adobe TaggedText for import to InDesign
 
