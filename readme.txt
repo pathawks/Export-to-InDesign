@@ -11,7 +11,7 @@ Export a post as Adobe TaggedText for import to InDesign
 == Description ==
 
 Adds a metabox to the post editor to export a post as Adobe TaggedText that can be placed in an Adobe InDesign document.
-The export process will attempt to keep the significant formatting from the post, including strong, em, b, i tags.
+The export process will attempt to keep the significant formatting from the post, including `<strong>`, `<em>`, `<b>`, `<i>` tags.
 
 
 == Installation ==
