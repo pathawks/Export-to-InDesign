@@ -14,6 +14,13 @@ Adds a metabox to the post editor to export a post as Adobe TaggedText that can 
 The export process will attempt to keep the significant formatting from the post, including strong, em, b, i tags.
 
 
+== Installation ==
+
+1. Upload `dirty-suds-export-to-indesign` to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. In the post editor, find the "Export Post" metabox in the right sidebar. Click "Export to InDesign" to download  the story as a TaggedText file
+4. Place the story into an InDesign document
+
 == Frequently Asked Questions ==
 
 = Something is broken. The formatting isn't right =
@@ -26,23 +33,23 @@ TaggedText@pathawks.com
 Great! I'd love to hear from you.
 TaggedText@pathawks.com
 
+
 == Screenshots ==
 
 1. Metabox in post editor with "Export to InDesign" button
 
-== Installation ==
-
-1. Upload `dirty-suds-export-to-indesign` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. In the post editor, find the "Export Post" metabox in the right sidebar. Click "Export to InDesign" to download  the story as a TaggedText file
-4. Place the story into an InDesign document
 
 == Changelog ==
 
-== 1.01 ==
+= 1.01 =
 * Significant improvement to the way special characters are handled
 * Almost any character should be supported not
 
 
 = 1.00.20110222 =
 * First version
+
+== Upgrade Notice ==
+
+= 1.01 =
+Better support for special characters
