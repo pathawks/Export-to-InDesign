@@ -4,7 +4,7 @@ Donate link: http://www.pathawks.com
 Tags: export, post, indesign, print
 Requires at least: 3.1
 Tested up to: 3.1
-Stable tag: 1.01
+Stable tag: 1.02
 
 Export a post as Adobe TaggedText for import to InDesign
 
@@ -18,7 +18,7 @@ The export process will attempt to keep the significant formatting from the post
 
 1. Upload `dirty-suds-export-to-indesign` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. In the post editor, find the "Export Post" metabox in the right sidebar. Click "Export to InDesign" to download  the story as a TaggedText file
+3. In the post editor, find the **Export Post** metabox in the right sidebar. Click **Export to InDesign** to download  the story as a TaggedText file
 4. Place the story into an InDesign document
 
 == Frequently Asked Questions ==
@@ -41,15 +41,22 @@ TaggedText@pathawks.com
 
 == Changelog ==
 
+= 1.02 =
+* More improvement for special characters
+* Removes shortcodes
+
 = 1.01 =
 * Significant improvement to the way special characters are handled
-* Almost any character should be supported not
+* Almost any character should be supported now
 
 
 = 1.00.20110222 =
 * First version
 
 == Upgrade Notice ==
+
+= 1.02 =
+Removes shortcakes before processing. Faster
 
 = 1.01 =
 Better support for special characters

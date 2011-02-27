@@ -17,7 +17,13 @@ function dirtysuds_content_taggedtext(){
 	);
 	
 	$html_tags = array(
-		'/([\n\r\f]*<p>|<br[\s\/]*>[\s\t\n\r\f]+)/',
+		'/&(#60|lt);/',
+		'/&(#62|gt);/',
+		'/&#61;/',
+		'/'.chr(194).chr(160).'/',
+		'/[\n\r\f]+/',
+		'/&#[xX]([0-9]{4})\;/',
+		'/([\n\r\f]*<p>|<br[\s\/]*>[\s\t\n\r\f]+|[\s\t]*[\n\r\f]+[\s\t]*)/',
 		'/(<br>|<br \/>)/',
 		'/(<b>|<strong>)/',
 		'/(<i>|<em>)/',
@@ -33,7 +39,7 @@ function dirtysuds_content_taggedtext(){
 		'/&(#182|para);/',
 		'/&(#174|reg);/',
 		'/&(#169|copy);/',
-		'/(&#(8230|x2026);|'.chr(226).chr(128).chr(166).')/',
+		'/(&#(8230);|'.chr(226).chr(128).chr(166).')/',
 		'/&(#8211|ndash);/',
 		'/&(#8212|mdash);/',
 		'/(&(#8220|ldquo);|'.chr(226).chr(128).chr(156).')/',
@@ -43,12 +49,22 @@ function dirtysuds_content_taggedtext(){
 		'/&(#160|nbsp);/',
 		'/&(#176|deg);/',
 		'/&(#8482|trade);/',
-		'/&#(8209|x2011);/',
-		'/(&[#a-z0-9]+;|'.chr(226).chr(128).'.)/'
+		'/&#(8209);/',
+		'/[\ ]+/',
+		'/[\t]+[\ \t]*/',
+		'/[\n\r\f]+/',
+		'/(&[#a-z0-9]+;|'.chr(226).chr(128).'.|<pstyle:NormalParagraphStyle>\t[\n\r\f]+|<pstyle:NormalParagraphStyle>\t$)/',
+		'/\^<{0}/',
 	);
 	
 	$tagged_tags = array(
-		PHP_EOL.'<pstyle:NormalParagraphStyle>'.chr(9),
+		'<',
+		'>',
+		'&',
+		' ',
+		chr(10),
+		'<0x$1>',
+		chr(10).'<pstyle:NormalParagraphStyle>'.chr(9),
 		'<0x000A>',
 		'<ct:Bold>',
 		'<ct:Italic>',
@@ -75,33 +91,20 @@ function dirtysuds_content_taggedtext(){
 		'<0x00B0>',
 		'<0x2122>',
 		'<0x2011>',
-		''
+		' ',
+		chr(9),
+		chr(10),
+		'',
+		chr(10).'<pstyle:NormalParagraphStyle>'.chr(9).'$1',
 	);
 	$content = '';
 	$content = get_the_content();
+	$content = strip_shortcodes($content);
 	$content = wpautop($content);
 	$content = wp_kses($content,$allowed_taggedtext_tags);
 	$content = wptexturize($content);
-	$content = htmlentities($content, ENT_QUOTES, "UTF-8", false);
-	$content = preg_replace(array('/&gt;/','/&lt;/'),array('>','<'),$content);
-	$content = str_replace(chr(194).chr(160),' ',$content);
-	$content = preg_replace('/[\n\r\f]+/',PHP_EOL,$content);
-	$content = preg_replace('/&#[xX]([0-9]{4})\;/','<0x$1>',$content);
+	$content = htmlentities($content, ENT_QUOTES, get_bloginfo('charset'), false);
 	$content = preg_replace($html_tags,$tagged_tags,$content);
-	$content = str_replace('<pstyle:NormalParagraphStyle>'.chr(9).PHP_EOL,'',$content);
-	
-	while (strpos($content,'  ')>1) {
-		$content = str_replace('  ',' ',$content);
-	}
-
-	while (strpos($content,PHP_EOL.PHP_EOL)>1) {
-		$content = str_replace(PHP_EOL.PHP_EOL,PHP_EOL,$content);
-	}
-	
-	
-	$content = str_replace(chr(9).' ',chr(9),$content);
-	$content = str_replace(' '.PHP_EOL,PHP_EOL,$content);
-		
 	return $content;
 }
 

@@ -8,6 +8,8 @@ Version: 1.01
 Author URI: http://www.pathawks.com
 
 Updates:
+1.02 - Faster. Now removes shortcodes
+1.01 - Better support for special characters
 1.00.20110222 - First Version
 
   Copyright 2011 Pat Hawks  (email : pat@pathawks.com)
