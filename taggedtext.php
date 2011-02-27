@@ -2,7 +2,7 @@
 
 function dirtysuds_content_taggedtext(){
 
-	$listTag = chr(165).' ';
+	$listTag = '<0x2022> ';
 	$listEnd = '';
 
 	$allowed_taggedtext_tags = array(
@@ -41,6 +41,9 @@ function dirtysuds_content_taggedtext(){
 		'/&(#8216|lsquo);/',
 		'/(&(#8217|rsquo);|'.chr(226).chr(128).chr(153).')/',
 		'/&(#160|nbsp);/',
+		'/&(#176|deg);/',
+		'/&(#8482|trade);/',
+		'/&#(8209|x2011);/',
 		'/(&[#a-z0-9]+;|'.chr(226).chr(128).'.)/'
 	);
 	
@@ -56,19 +59,22 @@ function dirtysuds_content_taggedtext(){
 		'\\<',
 		chr(97),
 		'\\>',
-		chr(164),
-		chr(165),
-		chr(166),
-		chr(168),
-		chr(169),
-		chr(201),
-		chr(208),
-		chr(209),
-		chr(210),
-		chr(211),
-		chr(212),
-		chr(213),
-		' ',
+		'<0x00A7>',
+		'<0x2022>',
+		'<0x00B6>',
+		'<0x00AE>',
+		'<0x00A9>',
+		'<0x2026>',
+		'<0x2013>',
+		'<0x2014>',
+		'<0x201C>',
+		'<0x201D>',
+		'<0x2018>',
+		'<0x2019>',
+		'<0x00A0>',
+		'<0x00B0>',
+		'<0x2122>',
+		'<0x2011>',
 		''
 	);
 	$content = '';
@@ -76,8 +82,11 @@ function dirtysuds_content_taggedtext(){
 	$content = wpautop($content);
 	$content = wp_kses($content,$allowed_taggedtext_tags);
 	$content = wptexturize($content);
+	$content = htmlentities($content, ENT_QUOTES, "UTF-8", false);
+	$content = preg_replace(array('/&gt;/','/&lt;/'),array('>','<'),$content);
 	$content = str_replace(chr(194).chr(160),' ',$content);
 	$content = preg_replace('/[\n\r\f]+/',PHP_EOL,$content);
+	$content = preg_replace('/&#[xX]([0-9]{4})\;/','<0x$1>',$content);
 	$content = preg_replace($html_tags,$tagged_tags,$content);
 	$content = str_replace('<pstyle:NormalParagraphStyle>'.chr(9).PHP_EOL,'',$content);
 	

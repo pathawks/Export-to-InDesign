@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Dirty Suds - Export to InDesign
+Plugin Name: DirtySuds - Export to InDesign
 Plugin URI: http://dirtysuds.com
 Description: Export a post as Adobe TaggedText for import to InDesign
-Author: Pat Hawks
-Version: 1.00.20110222
+Author: pathawks
+Version: 1.01
 Author URI: http://www.pathawks.com
 
 Updates:
