@@ -18,7 +18,7 @@ The export process will attempt to keep the significant formatting from the post
 
 1. Upload `dirty-suds-export-to-indesign` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. In the post editor, find the "Export Post" metabox in the right sidebar. Click "Export to InDesign" to download  the story as a TaggedText file
+3. In the post editor, find the **Export Post** metabox in the right sidebar. Click **Export to InDesign** to download  the story as a TaggedText file
 4. Place the story into an InDesign document
 
 == Frequently Asked Questions ==
