@@ -1,6 +1,6 @@
 === DirtySuds - Export to InDesign ===
 Contributors: pathawks
-Donate link: http://www.pathawks.com
+Donate link: http://www.pathawks.com/p/wordpress-plugins.html
 Tags: export, post, indesign, print
 Requires at least: 3.1
 Tested up to: 3.1
