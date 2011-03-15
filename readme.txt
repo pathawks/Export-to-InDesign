@@ -1,5 +1,5 @@
-=== DirtySuds - Export to InDesign ===
-Contributors: pathawks
+=== Export to InDesign ===
+Contributors: dirtysuds, pathawks
 Donate link: http://www.pathawks.com/p/wordpress-plugins.html
 Tags: export, post, indesign, print
 Requires at least: 3.1
@@ -56,7 +56,7 @@ TaggedText@pathawks.com
 == Upgrade Notice ==
 
 = 1.02 =
-Removes shortcakes before processing. Faster
+Removes shortcodes before processing. Faster
 
 = 1.01 =
 Better support for special characters
