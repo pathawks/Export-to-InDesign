@@ -32,7 +32,7 @@ font-size:20pt;
 <?php the_author_firstname() ?> <?php the_author_lastname() ?><br />
 <?php echo get_the_author_email() ?>
 </div>
-<?php echo strip_shortcodes(make_url_footnote(get_the_content())); ?>
+<?php echo apply_filters('the_content',strip_shortcodes(make_url_footnote(get_the_content()))); ?>
 <script>
 window.print();
 </script>
