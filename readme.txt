@@ -3,8 +3,8 @@ Contributors: dirtysuds, pathawks
 Donate link: http://www.pathawks.com/p/wordpress-plugins.html
 Tags: export, post, indesign, print
 Requires at least: 3.1
-Tested up to: 3.1
-Stable tag: 1.02
+Tested up to: 3.1.1
+Stable tag: 1.03
 
 Export a post as Adobe TaggedText for import to InDesign
 
@@ -41,6 +41,9 @@ TaggedText@pathawks.com
 
 == Changelog ==
 
+= 1.03 =
+* Fixed issue with Print Function
+
 = 1.02 =
 * More improvement for special characters
 * Removes shortcodes
@@ -54,6 +57,9 @@ TaggedText@pathawks.com
 * First version
 
 == Upgrade Notice ==
+
+= 1.03 =
+Fixed issue with Print function
 
 = 1.02 =
 Removes shortcakes before processing. Faster

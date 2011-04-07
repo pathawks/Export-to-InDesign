@@ -4,10 +4,11 @@ Plugin Name: DirtySuds - Export to InDesign
 Plugin URI: http://dirtysuds.com
 Description: Export a post as Adobe TaggedText for import to InDesign
 Author: pathawks
-Version: 1.01
+Version: 1.03
 Author URI: http://www.pathawks.com
 
 Updates:
+1.03 - Indent Text
 1.02 - Faster. Now removes shortcodes
 1.01 - Better support for special characters
 1.00.20110222 - First Version
