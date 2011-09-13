@@ -3,15 +3,15 @@ Contributors: dirtysuds, pathawks
 Donate link: http://www.pathawks.com/p/wordpress-plugins.html
 Tags: export, post, indesign, print
 Requires at least: 3.1
-Tested up to: 3.1.1
-Stable tag: 1.03
+Tested up to: 3.2.1
+Stable tag: 1.10
 
 Export a post as Adobe TaggedText for import to InDesign
 
 == Description ==
 
 Adds a metabox to the post editor to export a post as Adobe TaggedText that can be placed in an Adobe InDesign document.
-The export process will attempt to keep the significant formatting from the post, including `<strong>`, `<em>`, `<b>`, `<i>` tags.
+The export process will attempt to keep the significant formatting from the post, including `<strong>`, `<em>`, `<b>`, `<i>`, `<li>` tags.
 
 
 == Installation ==
@@ -23,15 +23,23 @@ The export process will attempt to keep the significant formatting from the post
 
 == Frequently Asked Questions ==
 
+= Some characters are missing =
+
+This is an infrequent, but known issue.
+Support for non-English characters and special characters has improved over past versions, but is still not 100%. If the plugin finds a character is does not recognize, it will be replaced with a box, making it easy to fix manually in InDesign.
+If you come across this, please email the TaggedText file and a link to the live post on your site to plugins@dirtysuds.com
+
+
 = Something is broken. The formatting isn't right =
 
 Please send me a message with the TaggedText file attached and a brief explanation of what you were expecting vs. what went wrong, and I'll try to fix it in a future release.
-TaggedText@pathawks.com
+plugins@dirtysuds.com
+
 
 = I have an idea for a great way to improve this plugin =
 
 Great! I'd love to hear from you.
-TaggedText@pathawks.com
+plugins@dirtysuds.com
 
 
 == Screenshots ==
@@ -40,6 +48,9 @@ TaggedText@pathawks.com
 
 
 == Changelog ==
+
+= 1.10 =
+* Improved support for non-English characters
 
 = 1.03 =
 * Fixed issue with Print Function
@@ -57,6 +68,9 @@ TaggedText@pathawks.com
 * First version
 
 == Upgrade Notice ==
+
+= 1.10 =
+Improved support for non-English characters. Upgrading is strongly recommended.
 
 = 1.03 =
 Fixed issue with Print function
