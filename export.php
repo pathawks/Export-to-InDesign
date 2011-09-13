@@ -58,3 +58,10 @@ return dirname( __FILE__ ) .'/print.php';
 return $single_template;
 }
 }
+
+function dirtysuds_export_html_rate($links,$file) {
+		if (plugin_basename(__FILE__) == $file) {
+			$links[] = '<a href="http://wordpress.org/extend/plugins/dirty-suds-export-to-indesign/">Rate this plugin</a>';
+		}
+	return $links;
+}
