@@ -2,6 +2,8 @@
 
 function dirtysuds_content_taggedtext(){
 
+	$NormalParagraphStyle = 'NormalParagraphStyle';
+
 	$allowed_taggedtext_tags = array(
 		'p' => array(),
 		'br' => array(),
@@ -10,6 +12,8 @@ function dirtysuds_content_taggedtext(){
 		'i' => array(),
 		'em' => array(),
 		'li' => array(),
+		'ul' => array(),
+		'ol' => array(),
 		'span' => array()
 	);
 
@@ -45,7 +49,7 @@ function dirtysuds_content_taggedtext(){
 		chr(10),
 		'<0x$1>',
 		"'<0x'.str_pad(dechex($1),4,'0',STR_PAD_LEFT).'>'",
-		"\x0a<pstyle:NormalParagraphStyle>",
+		"\x0a<pstyle:$NormalParagraphStyle>",
 		'<0x000A>',
 		'<ct:Bold>',
 		'<ct:Italic>',
@@ -86,15 +90,39 @@ function dirtysuds_content_taggedtext(){
 	$content = htmlentities($content, ENT_QUOTES, 'UTF-8', false);
 
 	$content = preg_replace($html_tags,$tagged_tags,$content);
+	
+	// Replace Unordered List Items with bullets
+	$countUnorderedLists = preg_match_all('/(<ul>(.+)<\/ul>)/i',$content,$UnorderedLists);
+	for ($i=0;$i<$countUnorderedLists;$i++) {
+		
+		echo "\n\n",implode('',$UnorderedLists[0]),"\n\n";
+		
+		$content = strtr(
+			$content,
+			array(
+				implode('',$UnorderedLists[0]) =>
+				strtr(
+					$UnorderedLists[$i-1][2],
+					array(
+						'<li>' => "\x0a<pstyle:$NormalParagraphStyle><bnlt:Bullet>",
+						'</li>' => "\x0a<bnlt:><pstyle:NormalParagraphStyle>",
+						"<pstyle:$NormalParagraphStyle>\x0a<pstyle:$NormalParagraphStyle>" => "\x0a<pstyle:$NormalParagraphStyle>",
+					)
+				)
+			)
+		);
+	}
 
 	$countHtmlNamedEntities = preg_match_all("/\&[a-zA-Z]+;/",$content,$htmlNamedEntities);
 
 	for ($i=0;$i<$countHtmlNamedEntities;$i++)
-		$content = str_replace(
-		$htmlNamedEntities[0][$i],
-		'<0x'.str_pad(dechex(ord(html_entity_decode($htmlNamedEntities[0][$i]))),4,'0',STR_PAD_LEFT).'>',
-		$content
-	);
+		$content = strtr(
+			$content,
+			array(
+				$htmlNamedEntities[0][$i] =>
+				'<0x'.str_pad(dechex(ord(html_entity_decode($htmlNamedEntities[0][$i]))),4,'0',STR_PAD_LEFT).'>',
+			)
+		);
 
 // Some characters did not transcode well
 // We will replace them with blocks, so it is obvious that characters are missing
@@ -126,8 +154,9 @@ header('Content-Disposition: filename='.preg_replace("/[^a-zA-Z0-9\-_]/", "",get
 
 
 ?><ANSI-MAC>
-<vsn:7><fset:InDesign-Roman><ctable:=<Black:COLOR:CMYK:Process:0,0,0,1>>
-<dps:NormalParagraphStyle=<Nextstyle:NormalParagraphStyle><cs:10.000000><cl:11.000000><ptr:18\,Left\,.\,0\,\;><cf:Times New Roman>><?php
+<vsn:7.5><fset:InDesign-Roman><ctable:=>
+<dps:<?php echo $NormalParagraphStyle;?>=<Nextstyle:<?php echo $NormalParagraphStyle;?>><cc:Registration><cs:10><cl:11><pfli:12><cf:Times New Roman><pbl:1><cotfcalt:0>>
+<?php
 echo dirtysuds_content_taggedtext();
 endwhile;
 exit();
