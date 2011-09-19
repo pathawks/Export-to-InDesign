@@ -1,16 +1,102 @@
 <?php
 
+$options = get_option('dirtysuds_export_options');
+
+if ($options['outputFormat'])
+	$outputFormat       = $options['outputFormat'];
+else
+	$outputFormat       = '<ANSI-MAC>';
+
+if ($options['outputFormat']=='<ANSI-MAC>')
+	$newLine            = "\x0a";
+else
+	$newLine            = "\x0d\x0a";
+
+$NormalParagraphStyle = 'NormalParagraphStyle';
+$defineStyles =
+'<DefineParaStyle:'.
+$NormalParagraphStyle.
+'=<Nextstyle:'.$NormalParagraphStyle.'>'.
+'<cColor:Registration><cSize:10><cLeading:11>'.
+'<pFirstLineIndent:12><cFont:Times New Roman>'.
+'>';
+
 function dirtysuds_content_taggedtext(){
 
+	global $NormalParagraphStyle,$newLine;
+
 	$allowed_taggedtext_tags = array(
-		'p' => array(),
-		'br' => array(),
-		'b' => array(),
+		'p'      => array(),
+		'br'     => array(),
+		'b'      => array(),
 		'strong' => array(),
-		'i' => array(),
-		'em' => array(),
-		'li' => array(),
-		'span' => array()
+		'i'      => array(),
+		'em'     => array(),
+		'u'      => array(),
+		'del'    => array(),
+		'li'     => array(),
+		'ul'     => array(),
+		'ol'     => array(),
+		'span'   => array(),
+		'sub'    => array(),
+		'sup'    => array(),
+		'h1'     => array(),
+		'h2'     => array(),
+		'h3'     => array(),
+		'h4'     => array(),
+		'h5'     => array(),
+		'h6'     => array(),
+		'blockquote' => array(),
+	);
+	
+	$conversion_table = array(
+		"\r"            =>$newLine,
+		"\f"            =>$newLine,
+		'&nbsp;'        =>' ',
+		"<pre>"         =>$newLine.'<ParaStyle:'.$NormalParagraphStyle.'>'.
+		                  '<cFont:Andale Mono>',
+		"</pre>"        =>'<cFont:>'.$newLine,
+		'<p>'           =>$newLine.'<ParaStyle:'.$NormalParagraphStyle.'>',
+		'</p>'          =>'',
+		'<b>'           =>'<cTypeface:Bold>',
+		'<strong>'      =>'<cTypeface:Bold>',
+		'<i>'           =>'<cTypeface:Italic>',
+		'<em>'          =>'<cTypeface:Italic>',
+		'</b>'          =>'<cTypeface:>',
+		'</strong>'     =>'<cTypeface:>',
+		'</i>'          =>'<cTypeface:>',
+		'</em>'         =>'<cTypeface:>',
+		'<u>'           =>'<cUnderline:1>',
+		'</u>'          =>'<cUnderline:>',
+		'<del>'         =>'<cStrikethru:1>',
+		'</del>'        =>'<cStrikethru:>',
+		'<sub>'         =>'<cPosition:Subscript>',
+		'</sub>'        =>'<cPosition:>',
+		'<sup>'         =>'<cPosition:Superscript>',
+		'</sup>'        =>'<cPosition:>',
+		'<h1>'          =>$newLine.'<ParaStyle:><cTypeface:Bold><cSize:48>',
+		'<h2>'          =>$newLine.'<ParaStyle:><cSize:36>',
+		'<h3>'          =>$newLine.'<ParaStyle:><cTypeface:Bold><cSize:18>',
+		'<h4>'          =>$newLine.'<ParaStyle:><cTypeface:Bold>',
+		'<h5>'          =>$newLine.'<ParaStyle:><cTypeface:Bold Italic>',
+		'<h6>'          =>$newLine.'<ParaStyle:><cTypeface:Italic>',
+		'</h1>'         =>'<cTypeface:><cSize:>'.$newLine,
+		'</h2>'         =>'<cSize:>'.$newLine,
+		'</h3>'         =>'<cTypeface:><cSize:>'.$newLine,
+		'</h4>'         =>'<cTypeface:>'.$newLine,
+		'</h5>'         =>'<cTypeface:>'.$newLine,
+		'</h6>'         =>'<cTypeface:>'.$newLine,
+		'<blockquote>'  =>'<ParaStyle:'.$NormalParagraphStyle.'>'.
+		                  '<pLeftIndent:12><pSpaceBefore:6><pSpaceAfter:6>',
+		'</blockquote>' =>$newLine.'<pLeftIndent:><pSpaceBefore:><pSpaceAfter:>',
+	);
+
+	$trickyCharacters = array(
+		'&Yuml;'   => "\xd9",
+		'&oelig;'  => "\x97",
+		'&OElig;'  => "\xee",
+		'&scaron;' => '<0x0161>',
+		'&Scaron;' => '<0x0160>',
 	);
 
 	$html_tags = array(
@@ -18,49 +104,37 @@ function dirtysuds_content_taggedtext(){
 		'/&(#62|gt);/',
 		'/&#61;/',
 		'/[\n\r\f]+/',
-		'/&#[xX]([0-9]{4})\;/',
+		'/&#[xX]([0-9A-Fa-f]{4})\;/e',
 		'/&#([0-9]+)\;/e',
 		'/([\n\r\f]*<p>|<br[\s\/]*>[\s\t\n\r\f]+|[\s\t]*[\n\r\f]+[\s\t]*)/',
-		'/<[\/\s]*br[\/\s]*>/',
-		'/(<b>|<strong>)/',
-		'/(<i>|<em>)/',
-		'/<li>/',
-		'/<\/li>/',
-		'/<[\/]*(\!|span|p|a)>/',
-		'/<\/[^\>]+>/',
 		'/&(#60|lt);/',
 		'/&#61;/',
 		'/&(#62|gt);/',
 		'/([\ ]|&nbsp;)+/',
 		'/[\t]+[\ \t]*/',
 		'/[\n\r\f]+/',
-		'/\xc4([\x81-\xff])/e',
-		'/\xc5([\x41-\xff])/e',
+		'/\xc4([\x80-\xff])/e',
+		'/\xc5([\x40-\xff])/e',
+		'/&([A-Za-z]+)\;/e',
 	);
 
 	$tagged_tags = array(
 		'<',
 		'>',
 		'&',
-		chr(10),
-		'<0x$1>',
+		$newLine,
+		"'<0x'.$1.'>'",
 		"'<0x'.str_pad(dechex($1),4,'0',STR_PAD_LEFT).'>'",
-		"\x0a<pstyle:NormalParagraphStyle>",
-		'<0x000A>',
-		'<ct:Bold>',
-		'<ct:Italic>',
-		'<bnlt:Bullet>',
-		'<bnlt:>',
-		'',
-		'<ct:>',
+		"<p>",
 		'\\<',
-		chr(97),
+		' ',
 		'\\>',
 		' ',
 		chr(9),
-		chr(10),
+		$newLine,
 		"'<0x'.str_pad(dechex(ord($1) + 128),4,'0',STR_PAD_LEFT).'>'",
 		"'<0x'.str_pad(dechex(ord($1) + 192),4,'0',STR_PAD_LEFT).'>'",
+		"'<0x'.str_pad(dechex(ord(html_entity_decode('&'.$1.';'))),4,'0',STR_PAD_LEFT).'>'",
 	);
 
 	remove_all_filters('loop_end');
@@ -85,36 +159,45 @@ function dirtysuds_content_taggedtext(){
 
 	$content = htmlentities($content, ENT_QUOTES, 'UTF-8', false);
 
+	$content = strtr($content,$trickyCharacters);
+
 	$content = preg_replace($html_tags,$tagged_tags,$content);
 
-	$countHtmlNamedEntities = preg_match_all("/\&[a-zA-Z]+;/",$content,$htmlNamedEntities);
+	$content = strtr($content,$conversion_table);
 
-	for ($i=0;$i<$countHtmlNamedEntities;$i++)
-		$content = str_replace(
-		$htmlNamedEntities[0][$i],
-		'<0x'.str_pad(dechex(ord(html_entity_decode($htmlNamedEntities[0][$i]))),4,'0',STR_PAD_LEFT).'>',
-		$content
-	);
+/*
+	// Replace Unordered List Items with bullets
+	$unorderedLists = explode('<ul>',' '.$content);
+	$countUnorderedLists = count($unorderedLists);
 
-// Some characters did not transcode well
-// We will replace them with blocks, so it is obvious that characters are missing
+	for ($i=1;$i<$countUnorderedLists+1;$i=$i+2) {
+		$thislist = explode('</ul>',$unorderedLists[$i]);
+		$thislist = $thislist[0];
+		$content = strtr(
+			$content,
+			array(
+				'<ul>'.$thislist.'</ul>' =>
+				strtr(
+					$thislist,
+					array(
+						'<li>' => "<bnListType:Bullet>",
+						'</li>' => "\x0a<bnListType:>",
+						"<bnListType:>\x0a<bnListType:Bullet>" => "<bnListType:><bnListType:Bullet>",
+					)
+				)
+			)
+		);
+	}
 
-	$content = strtr(
-		$content,
-		array(
-		'<0x00ff>' => '<0x2588>',
-		'<0x0026>' => '<0x2588>',
-		)
-	);
+	*/
 
 	$content = trim($content);
 	return $content;
 }
 
-while ( have_posts() ) : the_post();
-
 // We don't want any optimization plugins mistaking our output for HTML. Let's turn them off.
 ob_end_clean();
+the_post();
 
 // We don't want the browser to render the file, only download it. Let's call it a binary file
 header('Content-type: binary/text; charset=utf-8');
@@ -124,10 +207,9 @@ header('Content-type: binary/text; charset=utf-8');
 
 header('Content-Disposition: filename='.preg_replace("/[^a-zA-Z0-9\-_]/", "",get_the_author_lastname().'-'.str_replace(' ','_',basename(get_permalink()))).'.txt;');
 
+echo
+	$outputFormat.$newLine.
+	$defineStyles.$newLine.
+	dirtysuds_content_taggedtext();
 
-?><ANSI-MAC>
-<vsn:7><fset:InDesign-Roman><ctable:=<Black:COLOR:CMYK:Process:0,0,0,1>>
-<dps:NormalParagraphStyle=<Nextstyle:NormalParagraphStyle><cs:10.000000><cl:11.000000><ptr:18\,Left\,.\,0\,\;><cf:Times New Roman>><?php
-echo dirtysuds_content_taggedtext();
-endwhile;
 exit();
