@@ -1,6 +1,6 @@
 === Export to InDesign ===
 Contributors: dirtysuds, pathawks
-Donate link: http://www.pathawks.com/p/wordpress-plugins.html
+Donate link: https://fundry.com/project/165-export-to-indesign
 Tags: export, post, indesign, print
 Requires at least: 3.1
 Tested up to: 3.2.1
@@ -12,6 +12,8 @@ Export a post as Adobe TaggedText for import to InDesign
 
 Adds a metabox to the post editor to export a post as Adobe TaggedText that can be placed in an Adobe InDesign document.
 The export process will attempt to keep the significant formatting from the post, including `<strong>`, `<em>`, `<b>`, `<i>`, `<li>` tags.
+
+If you have [suggestions](https://fundry.com/project/165-export-to-indesign) for new features, please add them to our Fundry page (see FAQ)
 
 
 == Installation ==
@@ -38,8 +40,8 @@ plugins@dirtysuds.com
 
 = I have an idea for a great way to improve this plugin =
 
-Great! I'd love to hear from you.
-plugins@dirtysuds.com
+We love helping people solve problems.
+If you  have a brilliant new idea you'd like to see implemented in this plugin, please add it to our [Fundry page](https://fundry.com/project/165-export-to-indesign). This will help us raise money to pay for the development and support of new features.
 
 
 == Screenshots ==
