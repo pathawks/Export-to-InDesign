@@ -1,113 +1,126 @@
 <?php
-if (have_posts()): while (have_posts()): the_post();
 ob_end_clean();
+the_post();
+
+$required = array();
+
+function displayMetaField($title,$data) {
+	if ($data)
+		echo '<strong>',$title,':</strong> ',$data,'<br />';
+	else if ($required[$title])
+		echo '<strong>',$title,':</strong> <span style="color:red;">none specified</span><br />';
 }
 
 ?><html><head><title><?php the_title_attribute(); ?></title>
 <style type="text/css">
 @media screen, print{ 
-html * { font-size:9pt; line-height:11pt; font-family: Palatino, Times, serif; }
-p { text-indent: 2em; margin:0; padding:0; margin:0; }
+html * {
+	font-size:9pt;
+	line-height:11pt;
+	font-family: Palatino, Times, serif;
+}
+p {
+	text-indent: 2em;
+	margin:0;
+	padding:0;
+	margin:0;
+}
 h3, h4 { margin-bottom:0; }
-.header { text-indent: 0; }
+#header {
+	text-indent: 0;
+	width:100%;
+	text-align:right;
+	margin-bottom: 4em;
+	font-size:16pt;
+	line-height: 22pt;
+}
+#header strong {
+font-size:20pt;
+}
 .alignnone { margin: 1em 0 1em 0; text-indent:0; font-style:italic; }
 .alignleft { float:left; margin: 0 1.5em 0.5em 0; text-indent:0; font-style:italic; }
 .alignright { float:right; margin: 0 0 0.5em 1.5em; text-indent:0; font-style:italic; }
-#post_urls { margin-top:1em; text-indent:0; font-style:italic; }
-#author { margin-bottom:1em; }
-#author strong { font-weight:bold; }
-.sociable { display:none; }
 }
 </style>
 </head><body>
-<div id="author">
-<p class="header">
-	<strong>Print headline:</strong>
+<div id="header">
 	<?php
-		$storypostheadline = get_post_meta($post->ID, 'story_print_headline', true);
-		if ($storypostheadline)
-			echo $storypostheadline;
+		displayMetaField(
+			'Print headline',
+			get_post_meta($post->ID, 'story_print_headline', true)
+		);
+
+		displayMetaField(
+			'Web headline',
+			$post->post_title
+		);
+
+		displayMetaField(
+			'Subhead/deck',
+			get_post_meta($post->ID, 'sub_head', true)
+		);
+
+		displayMetaField(
+			'Status',
+			strtr(
+				get_post_status( $ID ),
+				array(
+					'publish' => 'Published',
+					'pending' => 'Pending review by an editor',
+					'draft' => 'Draft',
+					'assigned' => 'Assigned to a writer',
+					'future' => 'Scheduled to post in the future',
+					'sent-to-production' => 'Sent to Production',
+					'pitch' => 'Story idea',
+					'waiting-for-feedback' => 'Waiting for editor feedback',
+				)
+			)
+		);
+
+		displayMetaField(
+			'Modified',
+			get_the_date('F j, Y \a\t g:i a')
+		);
+
+		displayMetaField(
+			'Production notes',
+			get_post_meta($post->ID, 'story_production_notes', true)
+		);
+
+		displayMetaField(
+			'Captions',
+			get_post_meta($post->ID, 'story_captions', true)
+		);
+
+		displayMetaField(
+			'Story length',
+			str_word_count(strip_tags($post->post_content)).' words ('.
+			round((str_word_count(strip_tags($post->post_content)) / 35), 2).
+			' column inches at 35 words per inch)';
+		);
+
+		displayMetaField(
+			'Filename',
+			get_post_meta($post->ID, 'story_file_slug', true).'.txt'
+		);
+
+		if(get_post_custom_values("guest_author"))
+			displayMetaField(
+				'By',
+				get_post_custom_values("guest_author")[0]
+			);
 		else
-			echo "<span style=\"color:red;\">none specified</span>";
-	?>
-</p>
-
-<p class="header">
-	<strong>Web headline:</strong><?php the_title(); ?>
-</p>
-
-<p class="header">
-	<strong>Subhead/deck:</strong>
-	<?php
-	$storysubhead = get_post_meta($post->ID, 'sub_head', true);
-	if ($storysubhead)
-		echo $storysubhead;
-	?>
-</p>
-
-<p class="header">
-	<strong>Status:</strong>
-	<?php
-		$statussearch = array('publish', 'pending', 'draft', 'assigned', 'future', 'sent-to-production', 'pitch', 'waiting-for-feedback');
-		$statusreplace = array('Published', 'Pending review by an editor', 'Draft', 'Assigned to a writer', 'Scheduled to post in the future','Sent to Production', 'Story idea', 'Waiting for editor feedback');
-		$statussubject = get_post_status( $ID );
-		echo str_replace($statussearch, $statusreplace, $statussubject);
-	?>
-</p>
-
-<p class="header">
-	<strong>Modified:</strong>
-	<?php
-		the_modified_date('F j, Y');
-	?>
-	at
-	<?php
-		the_modified_date('g:i a');
-	?>
-</p>
-
-<p class="header">
-	<strong>Production notes:</strong>
-	<?php
-		echo get_post_meta($post->ID, 'story_production_notes', true);
-	?>
-</p>
-
-<p class="header">
-	<strong>Captions:</strong>
-	<?php
-		$storycaptions = get_post_meta($post->ID, 'story_captions', true);
-		if ($storycaptions)
-			echo $storycaptions;
-	?>
-</p>
-
-<p class="header">
-	<strong>Story length:</strong>
-	<?php
-		echo str_word_count(strip_tags($post->post_content));
-	?>
-	words (
-	<?php
-		$numberofwords = str_word_count(strip_tags($post->post_content));
-		$wordsperinch = 35;
-		echo round(($numberofwords / $wordsperinch), 2);
-	?> column inches at <?php
-		echo $wordsperinch;
-	?> words per inch)
-</p>
-
-<p class="header">
-	<strong>Filename:</strong>
-	<?php
-		$storyfileslug = get_post_meta($post->ID, 'story_file_slug', true);
-		if ($storyfileslug)
-			echo $storyfileslug.".txt";
+			displayMetaField(
+				'By',
+				get_the_author()
+			);
 	?>
 </p>
 
 <p class="header">
 	<?php
+	
+	/*
 		// CHECK TO SEE IF AUTHOR IS GUEST_AUTHOR AND IF SO, OUTPUT THAT VALUE
 		$guest_author = get_post_custom_values("guest_author");
 		if ( $guest_author ) {
@@ -135,9 +148,8 @@ h3, h4 { margin-bottom:0; }
 					echo "and $add_author[$key]";
 				}
 			} 
-		}
+		} */
 	?>
-</p>
 </div>
 
 <?php
@@ -153,5 +165,4 @@ window.print();
 </body>
 </html>
 <?php
-endwhile; endif;
 exit();
