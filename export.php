@@ -3,12 +3,12 @@
 Plugin Name: DirtySuds - Export to InDesign
 Plugin URI: https://fundry.com/project/165-export-to-indesign
 Description: Export a post as Adobe TaggedText for import to InDesign
+License: GPL2
 Author: Dirty Suds
-Version: 1.10
 Author URI: http://blog.dirtysuds.com
+Version: 1.10
 
 Updates:
-1.10 - Better support for non-English characters
 1.03 - Indent Text
 1.02 - Faster. Now removes shortcodes
 1.01 - Better support for special characters
@@ -43,8 +43,16 @@ function dirtysuds_export_html_box() {
 /* Prints the box content */
 function dirtysuds_export_html_box_inner($post, $metabox) {
 
-	echo '<a class="button" style="float:right;margin-top:-3px" target="_blank" href="'.get_permalink($post->ID).'?export=print'.'">Print</a>';
-	echo '<a class="button" href="'.get_permalink($post->ID).'?export=taggedtext'.'">Export to InDesign</a> ';
+	echo
+		'<div class="inside" style="margin:0;padding:6px 0")>',
+		'<a class="button" style="margin-top:-4px;float:right" target="_blank" href="',
+		get_permalink($post->ID),'?export=print">Print</a>',
+		'<a class="button" href="',
+		get_permalink($post->ID),'?export=taggedtext">Export to InDesign</a>';
+
+//	echo '<a href="#post_status" style="margin:16px 0 0;display:block">Options</a>';
+
+	echo '</div>';
 }
 
 function dirtysuds_export_html($single_template) {
@@ -59,9 +67,4 @@ return $single_template;
 }
 }
 
-function dirtysuds_export_html_rate($links,$file) {
-		if (plugin_basename(__FILE__) == $file) {
-			$links[] = '<a href="http://wordpress.org/extend/plugins/dirty-suds-export-to-indesign/">Rate this plugin</a>';
-		}
-	return $links;
-}
+include('settings.php');
