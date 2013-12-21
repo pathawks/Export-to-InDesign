@@ -37,7 +37,7 @@ add_action('single_template', 'dirtysuds_export_html');
 
 /* Adds a box to the main column on the Post and Page edit screens */
 function dirtysuds_export_html_box() {
-    add_meta_box( 'dirtysuds_export_html', 'Export Post', 'dirtysuds_export_html_box_inner', 'post', 'side','high' );
+	add_meta_box( 'dirtysuds_export_html', 'Export Post', 'dirtysuds_export_html_box_inner', 'post', 'side','high' );
 }
 
 /* Prints the box content */
