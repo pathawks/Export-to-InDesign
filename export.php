@@ -3,12 +3,12 @@
 Plugin Name: DirtySuds - Export to InDesign
 Plugin URI: https://fundry.com/project/165-export-to-indesign
 Description: Export a post as Adobe TaggedText for import to InDesign
+License: GPL2
 Author: Dirty Suds
-Version: 1.10
 Author URI: http://blog.dirtysuds.com
+Version: 1.10
 
 Updates:
-1.10 - Better support for non-English characters
 1.03 - Indent Text
 1.02 - Faster. Now removes shortcodes
 1.01 - Better support for special characters
