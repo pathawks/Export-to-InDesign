@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: DirtySuds - Export to InDesign
-Plugin URI: https://fundry.com/project/165-export-to-indesign
+Plugin URI: https://github.com/DirtySuds/Export-to-InDesign
 Description: Export a post as Adobe TaggedText for import to InDesign
 License: GPL2
 Author: Dirty Suds
