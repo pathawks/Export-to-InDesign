@@ -12,6 +12,9 @@ if ($outputFormat=='<ANSI-MAC>')
 else
 	$newLine            = "\x0d\x0a";
 
+$taggedTextVersion  = '<Version:5>';
+$taggedTextFeatures = '<FeatureSet:InDesign-Roman><ColorTable:=<Black:COLOR:CMYK:Process:0,0,0,1>>';
+
 /* Name Default Styles */
 $postparastyle = 'Body text';
 $posth1style = 'body text SUBHEAD';
@@ -736,12 +739,11 @@ header('Content-type: binary/text; charset=utf-8');
 // Don't forget to strip the spaces out. This makes it more compatible cross browser
 header('Content-Disposition: filename='.get_post_meta($post->ID, 'story_file_slug', true).'.txt;');
 
-// START RENDERING OF TAGGED TEXT FILE
-echo $outputFormat; ?>
 
-<Version:5><FeatureSet:InDesign-Roman><ColorTable:=<Black:COLOR:CMYK:Process:0,0,0,1>>
-<?php 
-echo $defineStyles;
+// START RENDERING OF TAGGED TEXT FILE
+echo $outputFormat.$newLine;
+echo $taggedTextVersion.$taggedTextFeatures.$newLine;
+echo $defineStyles.$newLine;
 echo nbbj_pullquote_taggedtext(); // 120803
 echo nbbj_captions_taggedtext();
 // 120807 for Spotlights and Profiles subhead as category above the headline
