@@ -50,15 +50,15 @@ function dirtysuds_export_html_box_inner($post, $metabox) {
 }
 
 function dirtysuds_export_html($single_template) {
-if (strpos(' '.$_SERVER['QUERY_STRING'],'export=taggedtext')) {
-ob_end_clean();
-return dirname( __FILE__ ) .'/taggedtext.php';
-} else if (strpos(' '.$_SERVER['QUERY_STRING'],'export=print')) {
-ob_end_clean();
-return dirname( __FILE__ ) .'/print.php';
-} else {
-return $single_template;
-}
+	if (strpos(' '.$_SERVER['QUERY_STRING'],'export=taggedtext')) {
+		ob_end_clean();
+		return dirname( __FILE__ ) .'/taggedtext.php';
+	} else if (strpos(' '.$_SERVER['QUERY_STRING'],'export=print')) {
+		ob_end_clean();
+		return dirname( __FILE__ ) .'/print.php';
+	} else {
+		return $single_template;
+	}
 }
 
 function dirtysuds_export_html_rate($links,$file) {
