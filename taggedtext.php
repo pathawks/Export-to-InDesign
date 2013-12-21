@@ -7,10 +7,11 @@ if ($options['outputFormat'])
 else
 	$outputFormat       = '<ANSI-MAC>';
 
-if ($options['outputFormat']=='<ANSI-MAC>')
+if ($outputFormat=='<ANSI-MAC>')
 	$newLine            = "\x0a";
 else
 	$newLine            = "<0x000D>"; // original: "\x0d\x0a";
+
 // Spotlight and Profiles category (ID = 8130 live, 7832 dev)
 $spotlightCat = 8130;
 // NBBJ: add NBBJ InDesign styles for Business Register items based on which WordPress category is used
