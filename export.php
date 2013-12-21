@@ -9,6 +9,7 @@ Author URI: http://blog.dirtysuds.com
 Version: 1.10
 
 Updates:
+1.10 - Improved support for non-English characters
 1.03 - Indent Text
 1.02 - Faster. Now removes shortcodes
 1.01 - Better support for special characters
