@@ -634,7 +634,7 @@ if ($storypullquote2) {
 		$storypullquote2 = strtr($storypullquote2,$conversion_table); // NBBJ 120522
 		$storypullquote2 = '<ParaStyle:'.$pullquotestyle.'>'.$storypullquote2.$newLine;
 	}
-		else { $storypullquote2 = ""; }
+		else { $storypullquote2 = ''; }
 	$storypullquotes = $storypullquote1.$storypullquote2;
 	return $storypullquotes;
 }
@@ -709,15 +709,15 @@ function nbbj_subhead_taggedtext(){
 
 function nbbj_byline_taggedtext(){
 	global $bylinestyle;
-	echo "<ParaStyle:" . $bylinestyle .">";
+	echo "<ParaStyle:$bylinestyle>";
 	// CHECK TO SEE IF AUTHOR IS GUEST_AUTHOR AND IF SO, OUTPUT THAT VALUE
-	$guest_author = get_post_custom_values("guest_author");
+	$guest_author = get_post_custom_values('guest_author');
 	$nbbjauthor = get_the_author();
 	// 120810 push author title to next line with soft return in byline
 	$nbbjauthortitle = array(
-		", Business Journal" => "<0x000A>Business Journal",
-		", Special to the Business Journal" => "<0x000A>Special to the Business Journal",
-		", Event Development Manager" => "<0x000A>Event Development Manager"
+		', Business Journal' => '<0x000A>Business Journal',
+		', Special to the Business Journal' => '<0x000A>Special to the Business Journal',
+		', Event Development Manager' => '<0x000A>Event Development Manager'
 		);
 	$nbbjauthor = strtr($nbbjauthor,$nbbjauthortitle);
 	$nbbjauthorID = get_the_author_meta('ID');
@@ -725,7 +725,7 @@ function nbbj_byline_taggedtext(){
 	if ( $guest_author['0'] ) { echo "By " . $guest_author['0']; } 
 	// omit "By" for Business Journal Staff Report and Business Journal Editorial
 	elseif(($nbbjauthorID === 10) || ($nbbjauthorID === 17)) { echo $nbbjauthor; }
-	else { echo "By " . $nbbjauthor; }
+	else { echo "By $nbbjauthor"; }
 }
 
 // We don't want any optimization plugins mistaking our output for HTML. Let's turn them off.
