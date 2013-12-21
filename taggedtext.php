@@ -16,7 +16,11 @@ $taggedTextVersion  = '<Version:5>';
 $taggedTextFeatures = '<FeatureSet:InDesign-Roman><ColorTable:=<Black:COLOR:CMYK:Process:0,0,0,1>>';
 
 /* Name Default Styles */
-$postparastyle = 'Body text';
+if ( $options['NormalParagraphStyle'] )
+	$postparastyle = $options['NormalParagraphStyle'];
+else
+	$postparastyle = 'Body text';
+
 $posth1style = 'body text SUBHEAD';
 $posth2style = 'body text SUBHEAD';
 $posth3style = 'body text SUBHEAD';
