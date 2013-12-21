@@ -194,8 +194,8 @@ elseif (in_category($spotlightCat)) {
 		'</sub>'    =>'<cPosition:>',
 		'<sup>'     =>'<cPosition:Superscript>',
 		'</sup>'    =>'<cPosition:>',
-		'<h1>'      =>$newLine.'<ParaStyle:'.$posth3style.'>', // NBBJ
-		'<h2>'      =>$newLine.'<ParaStyle:'.$posth3style.'>', // NBBJ
+		'<h1>'      =>$newLine.'<ParaStyle:'.$posth1style.'>', // NBBJ
+		'<h2>'      =>$newLine.'<ParaStyle:'.$posth2style.'>', // NBBJ
 		'<h3>'      =>$newLine.'<ParaStyle:'.$posth3style.'>', // NBBJ
 		'<h4>'      =>$newLine.'<ParaStyle:'.$posth4style.'>', // NBBJ
 		'<h5>'      =>$newLine.'<ParaStyle:'.$posth5style.'>', // NBBJ
