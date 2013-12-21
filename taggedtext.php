@@ -737,8 +737,12 @@ header('Content-type: binary/text; charset=utf-8');
 
 // We need to give the file some sort of name. In this case, the author's last name and the title of the story
 // Don't forget to strip the spaces out. This makes it more compatible cross browser
-header('Content-Disposition: filename='.get_post_meta($post->ID, 'story_file_slug', true).'.txt;');
 
+$postFileName = get_post_meta($post->ID, 'story_file_slug', true);
+if ( strlen($postFileName) > 1 )
+	$postFileName = preg_replace("/[^a-zA-Z0-9\-_]/", "",get_the_author_lastname().'-'.str_replace(' ','_',basename(get_permalink())));
+
+header('Content-Disposition: filename='.$postFileName.'.txt;');
 
 // START RENDERING OF TAGGED TEXT FILE
 echo $outputFormat.$newLine;
