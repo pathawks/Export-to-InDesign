@@ -31,6 +31,8 @@ Updates:
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+include('settings.php');
+
 /* Define the custom box */
 add_action('admin_init', 'dirtysuds_export_html_box', 1);
 add_action('single_template', 'dirtysuds_export_html');
