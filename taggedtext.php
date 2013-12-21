@@ -756,23 +756,6 @@ else {
 	echo nbbj_subhead_taggedtext();
 	echo nbbj_byline_taggedtext();
 }
-/*	?><ParaStyle:<?php echo $bylinestyle; ?>><?php
-					// CHECK TO SEE IF AUTHOR IS GUEST_AUTHOR AND IF SO, OUTPUT THAT VALUE
-					// omit "By" for Business Journal Staff Report and Business Journal Editorial
-					// 120810 push author title to next line with soft return in byline
-					$guest_author = get_post_custom_values("guest_author");
-					$nbbjauthor = get_the_author();
-					$nbbjauthortitle = array(
-						", Business Journal" => "<0x000A>Business Journal",
-						", Special to the Business Journal" => "<0x000A>Special to the Business Journal",
-						", Event Development Manager" => "<0x000A>Event Development Manager"
-					);
-					$nbbjauthor = strtr($nbbjauthor,$nbbjauthortitle);
-					$nbbjauthorID = get_the_author_meta('ID');
-					$guest_author['0'] = strtr($guest_author['0'],$nbbjauthortitle);
-					if ( $guest_author['0'] ) { ?>By <?php echo $guest_author['0']; } 
-						elseif(($nbbjauthorID === 10) || ($nbbjauthorID === 17)) { echo $nbbjauthor; }
-						else { ?>By <?php echo $nbbjauthor; } */
 echo dirtysuds_content_taggedtext();
 endwhile;
 endif;
