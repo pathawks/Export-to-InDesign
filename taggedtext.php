@@ -10,7 +10,7 @@ else
 if ($outputFormat=='<ANSI-MAC>')
 	$newLine            = "\x0a";
 else
-	$newLine            = "<0x000D>"; // original: "\x0d\x0a";
+	$newLine            = "\x0d\x0a";
 
 // Spotlight and Profiles category (ID = 8130 live, 7832 dev)
 $spotlightCat = 8130;
