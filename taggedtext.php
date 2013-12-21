@@ -55,7 +55,7 @@ $spotlightCat = 8130;
 		$defineCaptionStyle = '<DefineParaStyle:'.$captionstyle.'=<cSize:8><cLeading:9><pFirstLineIndent:0><cFont:Helvetica LT Std><cTracking:-5><pTextAlignment:Left><pRuleBelowColor:Black><pRuleBelowOn:1><pRuleBelowOffset:4><pRuleBelowTint:100><pRuleBelowMode:Column><pRuleBelowStroke:.25>>'; // 120605 removed Nextstyle bc import error if next is same style not already defined
 		$definePullquoteStyle = '<DefineParaStyle:'.$pullquotestyle.'=<cSize:16.74><cLeading:20.46><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><cTracking:-15><pTextAlignment:Left>>'; // 120803
 		$defineMainHeadlineStyle = '<DefineParaStyle:'.$mainheadlinestyle.'=<cSize:36><cLeading:36><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><cTracking:-25><pTextAlignment:Left>>';
-		$defineDeckSubheadStyle = '<DefineParaStyle:'.$decksubheadstyle.'=<cSize:17><cLeading:16.2><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><pTextAlignment:Center>>';	
+		$defineDeckSubheadStyle = '<DefineParaStyle:'.$decksubheadstyle.'=<cSize:17><cLeading:16.2><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><pTextAlignment:Center>>';
 	// Upcoming Events calendar category ID = 39
 		$defineCalendarBodyStyle = '<DefineParaStyle:'.$nbbjcalendarbody.'=<cFont:Helvetica LT Std><cSize:8><cLeading:9.5><cTracking:-10><pLeftIndent:9><pFirstLineIndent:-9><pTextAlignment:Left>>';
 	$nbbjcalendarcategory = 'BR\_Calendar\:Calender Categories \(centerd\)';
@@ -132,12 +132,12 @@ elseif (in_category($spotlightCat)) {
 		$posth4style = 'SPOTLIGHT\:SPOT\_co name - 8pt Hel Blk';
 			$defineH4style = '<DefineParaStyle:'.$posth4style.'=<cSize:8><cLeading:9.5><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Black><pTextAlignment:Left><cTracking:-10>>';
 		$posth5style = 'SPOTLIGHT\:SPOT\_address\/city,zip,phone,web - 8pt pal';
-			$defineH5style = '<DefineParaStyle:'.$posth5style.'=<cSize:8><cLeading:9.5><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><pTextAlignment:Left><cTracking:-10>>';	
+			$defineH5style = '<DefineParaStyle:'.$posth5style.'=<cSize:8><cLeading:9.5><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><pTextAlignment:Left><cTracking:-10>>';
 	}
 	// if it's a company-oriented spotlight, with no People category applied
 	else {
 		$posth3style = 'SPOTLIGHT\:SPOT\_address\/city,zip,phone,web - 8pt pal';
-			$defineH3style = '<DefineParaStyle:'.$posth3style.'=<cSize:8><cLeading:9.5><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><pTextAlignment:Left><cTracking:-10>>';	
+			$defineH3style = '<DefineParaStyle:'.$posth3style.'=<cSize:8><cLeading:9.5><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><pTextAlignment:Left><cTracking:-10>>';
 	}	
 }
 
@@ -569,7 +569,7 @@ function dirtysuds_content_taggedtext(){
 	$content = htmlentities($content, ENT_QUOTES, 'UTF-8', false);
 	$content = strtr($content,$trickyCharacters);
 	$content = preg_replace($html_tags,$tagged_tags,$content);
-	$content = strtr($content,$conversion_table);	
+	$content = strtr($content,$conversion_table);
 /*
 	// Replace Unordered List Items with bullets
 	$unorderedLists = explode('<ul>',' '.$content);
