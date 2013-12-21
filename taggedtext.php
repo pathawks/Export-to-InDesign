@@ -152,7 +152,7 @@ elseif (in_category($spotlightCat)) {
 		'li'     => array(),
 		'ul'     => array(),
 		'ol'     => array(),
-// 120515		'span'   => array(),
+		'span'   => array(),
 		'sub'    => array(),
 		'sup'    => array(),
 		'h1'     => array(),
