@@ -2,12 +2,12 @@
 /* 12-20-13 update of NBBJ edits to v1.03 by jquackenbush for v1.10 */
 $options = get_option('dirtysuds_export_options');
 
-if ($options['outputFormat'])
+if ( $options['outputFormat'] )
 	$outputFormat       = $options['outputFormat'];
 else
 	$outputFormat       = '<ANSI-MAC>';
 
-if ($outputFormat=='<ANSI-MAC>')
+if ( $outputFormat == '<ANSI-MAC>' )
 	$newLine            = "\x0a";
 else
 	$newLine            = "\x0d\x0a";
