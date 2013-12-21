@@ -12,58 +12,62 @@ if ($outputFormat=='<ANSI-MAC>')
 else
 	$newLine            = "\x0d\x0a";
 
+/* Name Default Styles */
+$postparastyle = 'Body text';
+$posth1style = 'body text SUBHEAD';
+$posth2style = 'body text SUBHEAD';
+$posth3style = 'body text SUBHEAD';
+$posth4style = 'body text SUB-SUBHEAD';
+$posth5style = 'body text SUB-SUB-SUBHEAD';
+$posth6style = 'body text SUB-SUB-SUB-SUBHEAD';
+$bylinestyle = 'BYLINE';
+$captionstyle = 'Caption';
+$pullquotestyle = 'Pull Quote'; // 120803
+$mainheadlinestyle = 'Headline Times';
+$decksubheadstyle = '3 line subhead';
+$nbbjcalendarbody = 'BR\_Calendar\:Calendar body text';
+$nbbjcalendarevent = 'BR\_Calendar\:CAL Event';
+$peoplebody = 'BR\_People\:People body text';
+$peoplecategory = 'BR\_People\:People category';
+$peoplecaptions = 'People caption';
+$biznewsbody = 'BR\_News\:News body text';
+$biznewscategory = 'BR\_News\:News category title';
+$leasesbody = 'BR\_Leases - Sales - FBN\:Leases body text';
+$bizdigesthead = 'BDigest heads';
+$nbbjtablerow = 'Table Row';
+
 // Spotlight and Profiles category (ID = 8130 live, 7832 dev)
 $spotlightCat = 8130;
 // NBBJ: add NBBJ InDesign styles for Business Register items based on which WordPress category is used
-	$postparastyle = 'Body text'; 
 		$definePostParaStyle = '<DefineParaStyle:'.$postparastyle.'=<cSize:9><cLeading:10.5><pFirstLineIndent:9><cFont:Palatino LT Std><pTextAlignment:JustifyLeft>>'; // 120605 removed Nextstyle bc import error
-	$posth3style = 'body text SUBHEAD'; 
 		$defineH3style = '<DefineParaStyle:'.$posth3style.'=<cSize:11><cLeading:10.5><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Compressed><cTracking:50><cCase:All Caps><pTextAlignment:Center>>';
-	$posth4style = 'body text SUB-SUBHEAD';
 		$defineH4style = '<DefineParaStyle:'.$posth4style.'=<cSize:10.5><cLeading:10.5><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Bold><cTracking:50><cCase:Normal><pTextAlignment:Left>>';
-	$posth5style = 'body text SUB-SUB-SUBHEAD';
 		$defineH5style = '<DefineParaStyle:'.$posth5style.'=<cSize:10><cLeading:10.5><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Bold><cTracking:50><cCase:Normal><pTextAlignment:Left>>';
-	$posth6style = 'body text SUB-SUB-SUB-SUBHEAD';
 		$defineH6style = '<DefineParaStyle:'.$posth6style.'=<cSize:9.5><cLeading:10.5><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Bold><cTracking:50><cCase:Normal><pTextAlignment:Left>>';
-	$bylinestyle = 'BYLINE';
 		$defineBylineStyle = '<DefineParaStyle:'.$bylinestyle.'=<cSize:9><cLeading:10.5><pFirstLineIndent:0><cFont:Palatino LT Std><cCase:Small Caps><pTextAlignment:Center>>'; // 120605 removed Nextstyle bc import error
-	$captionstyle = 'Caption';
 		$defineCaptionStyle = '<DefineParaStyle:'.$captionstyle.'=<cSize:8><cLeading:9><pFirstLineIndent:0><cFont:Helvetica LT Std><cTracking:-5><pTextAlignment:Left><pRuleBelowColor:Black><pRuleBelowOn:1><pRuleBelowOffset:4><pRuleBelowTint:100><pRuleBelowMode:Column><pRuleBelowStroke:.25>>'; // 120605 removed Nextstyle bc import error if next is same style not already defined
-	$pullquotestyle = 'Pull Quote'; // 120803
 		$definePullquoteStyle = '<DefineParaStyle:'.$pullquotestyle.'=<cSize:16.74><cLeading:20.46><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><cTracking:-15><pTextAlignment:Left>>'; // 120803
-	$mainheadlinestyle = 'Headline Times';
 		$defineMainHeadlineStyle = '<DefineParaStyle:'.$mainheadlinestyle.'=<cSize:36><cLeading:36><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><cTracking:-25><pTextAlignment:Left>>';
-	$decksubheadstyle = '3 line subhead';
 		$defineDeckSubheadStyle = '<DefineParaStyle:'.$decksubheadstyle.'=<cSize:17><cLeading:16.2><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><pTextAlignment:Center>>';	
 	// Upcoming Events calendar category ID = 39
-	$nbbjcalendarbody = 'BR\_Calendar\:Calendar body text';
 		$defineCalendarBodyStyle = '<DefineParaStyle:'.$nbbjcalendarbody.'=<cFont:Helvetica LT Std><cSize:8><cLeading:9.5><cTracking:-10><pLeftIndent:9><pFirstLineIndent:-9><pTextAlignment:Left>>';
 	$nbbjcalendarcategory = 'BR\_Calendar\:Calender Categories \(centerd\)';
 		$defineCalendarCategoryStyle = '<DefineParaStyle:'.$nbbjcalendarcategory.'=<cFont:Helvetica LT Std><cSize:9><cLeading:9.5><cTypeface:Bold><cTracking:-10><pTextAlignment:Center>>';
-	$nbbjcalendarevent = 'BR\_Calendar\:CAL Event';
 		$defineCalendarEventStyle = '<DefineParaStyle:'.$nbbjcalendarevent.'=<pSpaceBefore:9.5><cTypeface:Bold><cFont:Helvetica LT Std><cSize:8><cLeading:9.5><cTracking:-10><pLeftIndent:9><pFirstLineIndent:-9><pTextAlignment:Left>>'; // 120605 added 9.5pt space before, removed BasedOn bc import error <BasedOn:'.$nbbjcalendarbody.'>
 	// People News category ID = 6728
-	$peoplebody = 'BR\_People\:People body text';
 		$definePeopleBodyStyle = '<DefineParaStyle:'.$peoplebody.'=<cFont:Palatino LT Std><cSize:9><cLeading:10.5><cTracking:-10><pTextAlignment:JustifyLeft><pFirstLineIndent:9><pKeepFirstNLines:1><pKeepLastNLines:1>>';
-	$peoplecategory = 'BR\_People\:People category';
 		$definePeopleCategoryStyle = '<DefineParaStyle:'.$peoplecategory.'=<cFont:Palatino LT Std><cSize:9><cLeading:10.5><cTracking:-10><pTextAlignment:Center><pFirstLineIndent:0><pKeepFirstNLines:1><pKeepLastNLines:1>>'; // 120605 TextAlignment:Center, pFirstLine:0; removed BasedOn bc import error <BasedOn:'.$peoplebody.'>
-	$peoplecaptions = 'People caption';
 		$definePeopleCaptionsStyle = '<DefineParaStyle:'.$peoplecaptions.'=<cFont:Helvetica LT Std><cSize:7><cLeading:8><cTracking:-5><pTextAlignment:Center><pFirstLineIndent:9><pKeepFirstNLines:1><pRuleBelowColor:Black><pRuleBelowOn:1><pRuleBelowOffset:1.44>
 <pRuleBelowTint:100><pRuleBelowMode:Column><pRuleBelowStroke:.25>>';
 	// Business News category ID = 6722
-	$biznewsbody = 'BR\_News\:News body text';
 		$defineBizNewsBodyStyle = '<DefineParaStyle:'.$biznewsbody.'=<cSize:8><cLeading:9><pFirstLineIndent:9><cFont:Helvetica LT Std><pTextAlignment:JustifyLeft><cTracking:-10>>';
-	$biznewscategory = 'BR\_News\:News category title';
 		$defineBizNewsCategoryStyle = '<DefineParaStyle:'.$biznewscategory.'=<BasedOn:'.$nbbjcalendarcategory.'>>';
 	// Leases category ID = 6721
-	$leasesbody = 'BR\_Leases - Sales - FBN\:Leases body text';
 		$defineLeasesBodyStyle = '<DefineParaStyle:'.$leasesbody.'=<BasedOn:'.$nbbjcalendarbody.'>>';
 	$leasesheading = 'BR\_Leases - Sales - FBN\:Leases CITIES categories'; // 120605 define LEASES and SALES headings same as county headings
 		$defineLeasesHeadingStyle = '<DefineParaStyle:'.$leasescategory.'=<cFont:Helvetica LT Std><cSize:9><cLeading:9.5><cTracking:-10><cTypeface:Bold><pTextAlignment:Center>>'; // 120605 updated to add center alignment, define LEASES and SALES headings same as county headings
 	// Business Digest category ID = 6731
-	$bizdigesthead = 'BDigest heads';
 		$defineBizDigestHead = '<DefineParaStyle:'.$bizdigesthead.'=<cFont:Helvetica LT Std><cTypeface:Compressed><cSize:16><cLeading:16><cTracking:50><pTextAlignment:JustifyLeft><pKeepFirstNLines:1><pKeepLastNLines:1><pMinLetterspace:-0.05>>';
-	$nbbjtablerow = 'Table Row';
 		$defineNBBJtablerow = '<DefineParaStyle:'.$nbbjtablerow.'=<cSize:9><cLeading:10><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Compressed>>';
 
 if (in_category(39) && in_category(14)) {
