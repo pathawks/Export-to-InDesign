@@ -324,7 +324,7 @@ elseif (in_category($spotlightCat)) {
 		'&scaron;' => '<0x0161>',
 		'&oelig;'  => "\x97",
 		'&Scaron;' => '<0x0160>',
-		'…'	=> '<0x2026>' // NBBJ 120620 ellipsis
+		'…'	=> '<0x2026>', // NBBJ 120620 ellipsis
 		'&scaron;' => '<0x0161>',
 		'&Yuml;'   => "\xd9",
 		'&fnof;'   => '<0x0192>',
