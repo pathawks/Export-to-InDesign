@@ -6,14 +6,11 @@ Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 1.10
 
-Export a post as Adobe TaggedText for import to InDesign
+Export a WordPress post as Adobe TaggedText for import to InDesign
 
 == Description ==
 
-Adds a metabox to the post editor to export a post as Adobe TaggedText that can be placed in an Adobe InDesign document.
-The export process will attempt to keep the significant formatting from the post, including `<strong>`, `<em>`, `<b>`, `<i>`, `<li>` tags.
-
-If you have [suggestions](https://fundry.com/project/165-export-to-indesign) for new features, please add them to our Fundry page (see FAQ)
+Make WordPress the center of your digital newsroom. Allow reporters to print stories or export to InDesign, right inside the post editor.
 
 
 == Installation ==
