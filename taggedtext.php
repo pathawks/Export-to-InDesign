@@ -3,14 +3,14 @@
 $options = get_option('dirtysuds_export_options');
 
 if ( $options['outputFormat'] )
-	$outputFormat       = $options['outputFormat'];
+	$outputFormat = $options['outputFormat'];
 else
-	$outputFormat       = '<ANSI-MAC>';
+	$outputFormat = '<ANSI-MAC>';
 
 if ( $outputFormat == '<ANSI-MAC>' )
-	$newLine            = "\x0a";
+	$newLine = "\x0a";
 else
-	$newLine            = "\x0d\x0a";
+	$newLine = "\x0d\x0a";
 
 $taggedTextVersion  = '<Version:5>';
 $taggedTextFeatures = '<FeatureSet:InDesign-Roman><ColorTable:=<Black:COLOR:CMYK:Process:0,0,0,1>>';
