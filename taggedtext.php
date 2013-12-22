@@ -1,5 +1,5 @@
 <?php
-/* 12-20-13 update of NBBJ edits to v1.03 by jquackenbush for v1.10 */
+
 $options = get_option('dirtysuds_export_options');
 
 if ( $options['outputFormat'] )
@@ -29,7 +29,7 @@ $posth5style = 'body text SUB-SUB-SUBHEAD';
 $posth6style = 'body text SUB-SUB-SUB-SUBHEAD';
 $bylinestyle = 'BYLINE';
 $captionstyle = 'Caption';
-$pullquotestyle = 'Pull Quote'; // 120803
+$pullquotestyle = 'Pull Quote';
 $mainheadlinestyle = 'Headline Times';
 $decksubheadstyle = '3 line subhead';
 $nbbjcalendarbody = 'BR\_Calendar\:Calendar body text';
@@ -53,7 +53,7 @@ $spotlightCat = 8130;
 		$defineH6style = '<DefineParaStyle:'.$posth6style.'=<cSize:9.5><cLeading:10.5><pFirstLineIndent:0><cFont:Helvetica LT Std><cTypeface:Bold><cTracking:50><cCase:Normal><pTextAlignment:Left>>';
 		$defineBylineStyle = '<DefineParaStyle:'.$bylinestyle.'=<cSize:9><cLeading:10.5><pFirstLineIndent:0><cFont:Palatino LT Std><cCase:Small Caps><pTextAlignment:Center>>'; // 120605 removed Nextstyle bc import error
 		$defineCaptionStyle = '<DefineParaStyle:'.$captionstyle.'=<cSize:8><cLeading:9><pFirstLineIndent:0><cFont:Helvetica LT Std><cTracking:-5><pTextAlignment:Left><pRuleBelowColor:Black><pRuleBelowOn:1><pRuleBelowOffset:4><pRuleBelowTint:100><pRuleBelowMode:Column><pRuleBelowStroke:.25>>'; // 120605 removed Nextstyle bc import error if next is same style not already defined
-		$definePullquoteStyle = '<DefineParaStyle:'.$pullquotestyle.'=<cSize:16.74><cLeading:20.46><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><cTracking:-15><pTextAlignment:Left>>'; // 120803
+		$definePullquoteStyle = '<DefineParaStyle:'.$pullquotestyle.'=<cSize:16.74><cLeading:20.46><pFirstLineIndent:0><cFont:Palatino LT Std><cTypeface:Italic><cTracking:-15><pTextAlignment:Left>>';
 		$defineMainHeadlineStyle = '<DefineParaStyle:'.$mainheadlinestyle.'=<cSize:36><cLeading:36><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><cTracking:-25><pTextAlignment:Left>>';
 		$defineDeckSubheadStyle = '<DefineParaStyle:'.$decksubheadstyle.'=<cSize:17><cLeading:16.2><pFirstLineIndent:0><cFont:Times LT Std><cTypeface:Bold><pTextAlignment:Center>>';
 	// Upcoming Events calendar category ID = 39
@@ -147,7 +147,7 @@ elseif (in_category($spotlightCat)) {
 		'p'      => array(
 			'style'	=> array(
 				'text-align' => array() // NBBJ 131216
-			)  // NBBJ
+			) 
 		),
 		'br'     => array(),
 		'b'      => array(),
@@ -169,8 +169,8 @@ elseif (in_category($spotlightCat)) {
 		'h5'     => array(),
 		'h6'     => array(),
 		'blockquote' => array(),
-		'td'	=> array(), // NBBJ
-		'tr'	=> array() // NBBJ
+		'td'	=> array(),
+		'tr'	=> array()
 	);
 	
 	$conversion_table = array(
@@ -178,10 +178,10 @@ elseif (in_category($spotlightCat)) {
 		"\r"            => '',
 		"\f"            => '',
 		'&nbsp;'        => ' ',
-		'<pre>'         => $newLine.'<ParaStyle:'.$postparastyle.'>', // NBBJ
+		'<pre>'         => $newLine.'<ParaStyle:'.$postparastyle.'>',
 		'</pre>'        => $newLine,
-		'<p>'           => $newLine.'<ParaStyle:'.$postparastyle.'>', // NBBJ
-		'<p style=<0x0022>text-align: center<0x0022>>'		=>$newLine.'<pTextAlignment:Center>', // NBBJ
+		'<p>'           => $newLine.'<ParaStyle:'.$postparastyle.'>',
+		'<p style=<0x0022>text-align: center<0x0022>>'		=>$newLine.'<pTextAlignment:Center>',
 		'<p style=<0x0022>text-align: right<0x0022>>'		=>$newLine.'<pTextAlignment:Right>', // NBBJ 120530 right flush
 		'</p>'          => '',
 		'<br />'        => '<0x000A>', // NBBJ 120523
@@ -201,30 +201,30 @@ elseif (in_category($spotlightCat)) {
 		'</sub>'        => '<cPosition:>',
 		'<sup>'         => '<cPosition:Superscript>',
 		'</sup>'        => '<cPosition:>',
-		'<h1>'          => $newLine.'<ParaStyle:'.$posth1style.'>', // NBBJ
-		'<h2>'          => $newLine.'<ParaStyle:'.$posth2style.'>', // NBBJ
-		'<h3>'          => $newLine.'<ParaStyle:'.$posth3style.'>', // NBBJ
-		'<h4>'          => $newLine.'<ParaStyle:'.$posth4style.'>', // NBBJ
-		'<h5>'          => $newLine.'<ParaStyle:'.$posth5style.'>', // NBBJ
-		'<h6>'          => $newLine.'<ParaStyle:'.$posth6style.'>', // NBBJ
+		'<h1>'          => $newLine.'<ParaStyle:'.$posth1style.'>',
+		'<h2>'          => $newLine.'<ParaStyle:'.$posth2style.'>',
+		'<h3>'          => $newLine.'<ParaStyle:'.$posth3style.'>',
+		'<h4>'          => $newLine.'<ParaStyle:'.$posth4style.'>',
+		'<h5>'          => $newLine.'<ParaStyle:'.$posth5style.'>',
+		'<h6>'          => $newLine.'<ParaStyle:'.$posth6style.'>',
 		'</h1>'         => '',
 		'</h2>'         => '',
 		'</h3>'         => '',
 		'</h4>'         => '',
 		'</h5>'         => '',
 		'</h6>'         => '',
-		'<blockquote>'  => '<ParaStyle:'.$postparastyle.'>', // NBBJ
+		'<blockquote>'  => '<ParaStyle:'.$postparastyle.'>',
 		'</blockquote>' => '',
-		'<ul>'		      => '', // NBBJ 120618
-		'</ul>'		      => '', // NBBJ
-		'<ol>'		      => '', // NBBJ 120618
-		'</ol>'		      => '', // NBBJ
-		'<li>'          => $newLine.'<ParaStyle:'.$postparastyle.'><0x2022> ', // NBBJ 120618
+		'<ul>'		      => '',
+		'</ul>'		      => '',
+		'<ol>'		      => '',
+		'</ol>'		      => '',
+		'<li>'          => $newLine.'<ParaStyle:'.$postparastyle.'><0x2022> ',
 		'</li>'         => '', // NBBJ 120618 added parabreak because list text run together
-		'<tr>'          => $newLine.'<ParaStyle:'.$nbbjtablerow.'>', // NBBJ 121012
-		'</tr>'         => '', // NBBJ 121012
+		'<tr>'          => $newLine.'<ParaStyle:'.$nbbjtablerow.'>',
+		'</tr>'         => '',
 		'</td>'         => '<0x0009>', // NBBJ 121012 change table cell closing tag to tab
-		'<td>'          => '' // NBBJ 121012
+		'<td>'          => ''
 	);
 
 /*************
@@ -596,8 +596,8 @@ function nbbj_pullquote_taggedtext(){
 		$storypullquote1 = esc_html($storypullquote1);
 		$storypullquote1 = htmlentities($storypullquote1, ENT_QUOTES, 'UTF-8', false);
 		$storypullquote1 = strtr($storypullquote1,$trickyCharacters);
-		$storypullquote1 = preg_replace($html_tags,$tagged_tags,$storypullquote1); // NBBJ 120522
-		$storypullquote1 = strtr($storypullquote1,$conversion_table); // NBBJ 120522
+		$storypullquote1 = preg_replace($html_tags,$tagged_tags,$storypullquote1);
+		$storypullquote1 = strtr($storypullquote1,$conversion_table);
 		$storypullquote1 = '<ParaStyle:'.$pullquotestyle.'>'.$storypullquote1.$newLine;
 	}
 		else { $storypullquote1 = ""; }
@@ -608,8 +608,8 @@ if ($storypullquote2) {
 		$storypullquote2 = esc_html($storypullquote2);
 		$storypullquote2 = htmlentities($storypullquote2, ENT_QUOTES, 'UTF-8', false);
 		$storypullquote2 = strtr($storypullquote2,$trickyCharacters);
-		$storypullquote2 = preg_replace($html_tags,$tagged_tags,$storypullquote2); // NBBJ 120522
-		$storypullquote2 = strtr($storypullquote2,$conversion_table); // NBBJ 120522
+		$storypullquote2 = preg_replace($html_tags,$tagged_tags,$storypullquote2);
+		$storypullquote2 = strtr($storypullquote2,$conversion_table);
 		$storypullquote2 = '<ParaStyle:'.$pullquotestyle.'>'.$storypullquote2.$newLine;
 	}
 		else { $storypullquote2 = ''; }
@@ -622,15 +622,15 @@ function nbbj_captions_taggedtext(){
 	global $postparastyle, $captionstyle, $storycaptions, $allowed_taggedtext_tags, $trickyCharacters, $html_tags, $tagged_tags, $conversion_table, $newLine ;
 	if ($storycaptions) { 
 		$storycaptions = wpautop($storycaptions);
-		$storycaptions = wptexturize($storycaptions); // NBBJ 120522
-		$storycaptions = trim($storycaptions); // NBBJ 120522
-		$storycaptions = mb_convert_encoding($storycaptions,'UTF-8',get_bloginfo('charset')); // NBBJ 120522
+		$storycaptions = wptexturize($storycaptions);
+		$storycaptions = trim($storycaptions);
+		$storycaptions = mb_convert_encoding($storycaptions,'UTF-8',get_bloginfo('charset'));
 		$storycaptions = esc_html($storycaptions); // NBBJ 120622 WP function to handle amp and quotes
-		$storycaptions = htmlentities($storycaptions, ENT_QUOTES, 'UTF-8', false); // NBBJ 120522
-		$storycaptions = strtr($storycaptions,$trickyCharacters); // NBBJ 120522
+		$storycaptions = htmlentities($storycaptions, ENT_QUOTES, 'UTF-8', false);
+		$storycaptions = strtr($storycaptions,$trickyCharacters);
 		$conversion_table['<p>'] = $newLine.'<ParaStyle:'.$captionstyle.'>'; // NBBJ 120522 replaces body text with caption style
-		$storycaptions = preg_replace($html_tags,$tagged_tags,$storycaptions); // NBBJ 120522
-		$storycaptions = strtr($storycaptions,$conversion_table); // NBBJ 120522
+		$storycaptions = preg_replace($html_tags,$tagged_tags,$storycaptions);
+		$storycaptions = strtr($storycaptions,$conversion_table);
 		$captioncleanupsearch = array(
 								'/^<0x000D><ParaStyle:'.$captionstyle.'>/',
 								'/<0x000A><0x000D><ParaStyle:'.$captionstyle.'>/',
@@ -640,7 +640,7 @@ function nbbj_captions_taggedtext(){
 								'',
 								'<0x000D><ParaStyle:'.$captionstyle.'>',
 								'<0x000D><ParaStyle:'.$captionstyle.'>'
-								); // NBBJ 120522
+								);
 		$storycaptions = preg_replace($captioncleanupsearch,$captioncleanupreplace,$storycaptions); // NBBJ 120522 cleans up extra soft returns
 		$storycaptions = '<ParaStyle:'.$captionstyle.'>'.$storycaptions.$newLine;
 		$conversion_table['<p>'] = $newLine.'<ParaStyle:'.$postparastyle.'>'; // NBBJ 120523 resets back to body text style
@@ -653,15 +653,15 @@ function nbbj_headline_taggedtext(){
 // NBBJ: add story print headline to the story
 	global $mainheadlinestyle, $storyprintheadline, $trickyCharacters, $html_tags, $tagged_tags, $conversion_table, $newLine;
 	if ($storyprintheadline) { 
-		$storyprintheadline = wptexturize($storyprintheadline); // NBBJ 120522
-		$storyprintheadline = trim($storyprintheadline); // NBBJ 120522
-		$storyprintheadline = mb_convert_encoding($storyprintheadline,'UTF-8',get_bloginfo('charset')); // NBBJ 120522
+		$storyprintheadline = wptexturize($storyprintheadline);
+		$storyprintheadline = trim($storyprintheadline);
+		$storyprintheadline = mb_convert_encoding($storyprintheadline,'UTF-8',get_bloginfo('charset'));
 		$storyprintheadline = esc_html($storyprintheadline); // NBBJ 120622 WP function to handle amp and quotes
-		$storyprintheadline = htmlentities($storyprintheadline, ENT_QUOTES, 'UTF-8', false); // NBBJ 120522
-		$storyprintheadline = strtr($storyprintheadline,$trickyCharacters); // NBBJ 120522
-		$storyprintheadline = preg_replace($html_tags,$tagged_tags,$storyprintheadline); // NBBJ 120522
-		$storyprintheadline = strtr($storyprintheadline,$conversion_table); // NBBJ 120522
-		$storyprintheadline = preg_replace('/(<0x000A>|\n)/',' ',$storyprintheadline); // NBBJ 120522
+		$storyprintheadline = htmlentities($storyprintheadline, ENT_QUOTES, 'UTF-8', false);
+		$storyprintheadline = strtr($storyprintheadline,$trickyCharacters);
+		$storyprintheadline = preg_replace($html_tags,$tagged_tags,$storyprintheadline);
+		$storyprintheadline = strtr($storyprintheadline,$conversion_table);
+		$storyprintheadline = preg_replace('/(<0x000A>|\n)/',' ',$storyprintheadline);
 		$storyprintheadline = "<ParaStyle:$mainheadlinestyle>".$storyprintheadline.$newLine; } 
 		else { $storyprintheadline = ""; }
 	return $storyprintheadline;
@@ -671,15 +671,15 @@ function nbbj_subhead_taggedtext(){
 // NBBJ: add subhead to the story
 	global $decksubheadstyle, $subhead, $trickyCharacters, $html_tags, $tagged_tags, $conversion_table, $newLine;
 	if ($subhead) { 
-		$subhead = wptexturize($subhead); // NBBJ 120522
-		$subhead = trim($subhead); // NBBJ 120522
-		$subhead = mb_convert_encoding($subhead,'UTF-8',get_bloginfo('charset')); // NBBJ 120522
+		$subhead = wptexturize($subhead);
+		$subhead = trim($subhead);
+		$subhead = mb_convert_encoding($subhead,'UTF-8',get_bloginfo('charset'));
 		$subhead = esc_html($subhead); // NBBJ 120622 WP function to handle amp and quotes
-		$subhead = htmlentities($subhead, ENT_QUOTES, 'UTF-8', false); // NBBJ 120522
-		$subhead = strtr($subhead,$trickyCharacters); // NBBJ 120522
-		$subhead = preg_replace($html_tags,$tagged_tags,$subhead); // NBBJ 120522
-		$subhead = strtr($subhead,$conversion_table); // NBBJ 120522
-		$subhead = preg_replace('/(<0x000A>|\n)/',' ',$subhead); // NBBJ 120522
+		$subhead = htmlentities($subhead, ENT_QUOTES, 'UTF-8', false);
+		$subhead = strtr($subhead,$trickyCharacters);
+		$subhead = preg_replace($html_tags,$tagged_tags,$subhead);
+		$subhead = strtr($subhead,$conversion_table);
+		$subhead = preg_replace('/(<0x000A>|\n)/',' ',$subhead);
 		$subhead = "<ParaStyle:$decksubheadstyle>".$subhead.$newLine; }
 		else { $subhead = ""; }
 	return $subhead;
@@ -726,7 +726,7 @@ header('Content-Disposition: filename='.$postFileName.'.txt;');
 echo $outputFormat.$newLine;
 echo $taggedTextVersion.$taggedTextFeatures.$newLine;
 echo $defineStyles.$newLine;
-echo nbbj_pullquote_taggedtext(); // 120803
+echo nbbj_pullquote_taggedtext();
 echo nbbj_captions_taggedtext();
 // 120807 for Spotlights and Profiles subhead as category above the headline
 if (in_category($spotlightCat)) {
