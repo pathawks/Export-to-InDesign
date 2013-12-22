@@ -213,7 +213,7 @@ elseif (in_category($spotlightCat)) {
 		'</h4>'         => '',
 		'</h5>'         => '',
 		'</h6>'         => '',
-		'<blockquote>'  =  '<ParaStyle:'.$postparastyle.'>', // NBBJ
+		'<blockquote>'  => '<ParaStyle:'.$postparastyle.'>', // NBBJ
 		'</blockquote>' => '',
 		'<ul>'		      => '', // NBBJ 120618
 		'</ul>'		      => '', // NBBJ
