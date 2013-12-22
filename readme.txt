@@ -1,10 +1,10 @@
 === Export to InDesign ===
-Contributors: dirtysuds, pathawks
-Donate link: https://fundry.com/project/165-export-to-indesign
+Contributors: pathawks, jquackenbush
+Donate link: https://github.com/DirtySuds/Export-to-InDesign
 Tags: export, post, indesign, print
 Requires at least: 3.1
-Tested up to: 3.2.1
-Stable tag: 1.10
+Tested up to: 3.8
+Stable tag: 1.11
 
 Export a WordPress post as Adobe TaggedText for import to InDesign
 
@@ -29,16 +29,10 @@ Support for non-English characters and special characters has improved over past
 If you come across this, please email the TaggedText file and a link to the live post on your site to plugins@dirtysuds.com
 
 
-= Something is broken. The formatting isn't right =
+= Something is broken, or I have a great idea. =
 
-Please send me a message with the TaggedText file attached and a brief explanation of what you were expecting vs. what went wrong, and I'll try to fix it in a future release.
-plugins@dirtysuds.com
-
-
-= I have an idea for a great way to improve this plugin =
-
-We love helping people solve problems.
-If you  have a brilliant new idea you'd like to see implemented in this plugin, please add it to our [Fundry page](https://fundry.com/project/165-export-to-indesign). This will help us raise money to pay for the development and support of new features.
+Please create an issue on the [GitHub page](https://github.com/DirtySuds/Export-to-InDesign/issues).  
+Creating a pull request with a fix is an even better option.
 
 
 == Screenshots ==
@@ -47,6 +41,9 @@ If you  have a brilliant new idea you'd like to see implemented in this plugin, 
 
 
 == Changelog ==
+
+= 1.11 =
+* Merged some changes from North Bay Business Journal
 
 = 1.10 =
 * Improved support for non-English characters
@@ -62,11 +59,13 @@ If you  have a brilliant new idea you'd like to see implemented in this plugin, 
 * Significant improvement to the way special characters are handled
 * Almost any character should be supported now
 
-
-= 1.00.20110222 =
+= 1.00 =
 * First version
 
 == Upgrade Notice ==
+
+= 1.11 =
+Merged some changes from North Bay Business Journal
 
 = 1.10 =
 Improved support for non-English characters. Upgrading is strongly recommended.
