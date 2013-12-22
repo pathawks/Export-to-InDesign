@@ -408,7 +408,6 @@ elseif (in_category($spotlightCat)) {
 		'&Dagger;'   => '<0x2021>',
 		'&bull;'     => '<0x2022>',
 		'&hellip;'   => '<0x2026>',
-		'…'          => '<0x2026>', // NBBJ 120620 ellipsis
 		'&permil;'   => '<0x2030>',
 		'&prime;'    => '<0x2032>',
 		'&Prime;'    => '<0x2033>',
