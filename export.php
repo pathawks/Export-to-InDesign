@@ -49,9 +49,9 @@ function dirtysuds_export_html_box_inner($post, $metabox) {
 	echo
 		'<div class="inside" style="margin:0;padding:6px 0")>',
 		'<a class="button" style="margin-top:-4px;float:right" target="_blank" href="',
-		get_permalink($post->ID),'?export=print">Print</a>',
+		get_permalink($post),'?export=print">Print</a>',
 		'<a class="button" href="',
-		get_permalink($post->ID),'?export=taggedtext">Export to InDesign</a>';
+		get_permalink($post),'?export=taggedtext">Export to InDesign</a>';
 
 //	echo '<a href="#post_status" style="margin:16px 0 0;display:block">Options</a>';
 
