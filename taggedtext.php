@@ -485,63 +485,41 @@ elseif (in_category($spotlightCat)) {
 	);
 
 	$html_tags = array(
-		'/('.chr(60).'|&(#60|lt);)/', // NBBJ 120530 added pure ASCII code
-		'/('.chr(62).'|&(#62|gt);)/', // NBBJ 120530 added pure ASCII code
-//		'/&(#38|amp);/', // NBBJ 120702 commented out because eliminating text after an ampersand as in K&C
-		'/('.chr(8211).'|&(#8211|ndash);)/', // NBBJ 120517 ndash with ndash
-		'/('.chr(8212).'|&(#8212|mdash);)/', // NBBJ 120517 mdash with ndash not mdash
-		'/('.chr(8216).'|&(#8216|lsquo);)/', //NBBJ left single quote
-		'/('.chr(8217).'|&(#8217|rsquo);)/', //NBBJ right single quote
-		'/('.chr(8220).'|&(#8220|ldquo);)/', //NBBJ left double quote
-		'/('.chr(8221).'|&(#8221|rdquo);)/', //NBBJ right double quote
-		'/&(#8230|hellip);/', // NBBJ 120620 ellipsis; 
-		'/[\n\r\f]+/', // NBBJ 120523
+		'/&(#60|lt);/',
+		'/&(#62|gt);/',
+		'/&#(#62);/',
+		'/[\n\r\f]+/',
 		'/&#[xX]([0-9A-Fa-f]{4})\;/e',
 		'/&#([0-9]+)\;/e',
-//		'/&(#60|lt);/', // NBBJ 120530 commented out, breaks preg_replace?
-//		'/&#61;/', // NBBJ 120530 commented out, breaks preg_replace?
-//		'/&(#62|gt);/', // NBBJ 120530 commented out, breaks preg_replace?
+		'/([\n\r\f]*<p>|<br[\s\/]*>[\s\t\n\r\f]+|[\s\t]*[\n\r\f]+[\s\t]*)/',
+		'/&(#60|lt);/',
+		'/&#61;/',
+		'/&(#62|gt);/',
 		'/([\ ]|&nbsp;)+/',
 		'/[\t]+[\ \t]*/',
 		'/[\n\r\f]+/',
 		'/\xc4([\x80-\xff])/e',
 		'/\xc5([\x40-\xff])/e',
 		'/&([A-Za-z]+)\;/e',
-		'/\'<0x\'\.\.\'>\'/', // NBBJ cleanup blank-coded parabreak as '<0x'..'>'
-		"/[\ ]{0,3}<\/td>/", // 121012 NBBJ clean up table cell conversion
-		'/<\/td><\/tr>/', // NBBJ 121012 clean up table cell conversion
-		"/($newLine){2,7}/", // 120618 NBBJ clean up double parabreaks 
-		"/<0x000A>$newLine/" // NBBJ 120523 replace softbreak plus parabreak with one parabreak
 	);
 
 	$tagged_tags = array(
 		'<',
 		'>',
-//		'&', // NBBJ 120702
-		'<0x2013>', // NBBJ 120517
-		'<0x2013>', // NBBJ 120517
-		'<0x2018>', //NBBJ
-		'<0x2019>', //NBBJ
-		'<0x201c>', //NBBJ
-		'<0x201d>', //NBBJ
-		'<0x2026>', // NBBJ 120620 ellipsis
+		'&',
+		$newLine,
 		"'<0x'.$1.'>'",
 		"'<0x'.str_pad(dechex($1),4,'0',STR_PAD_LEFT).'>'",
-		'', // NBBJ 120530 no need for parabreaks, as conversion_table will add
-//		'\\<', // NBBJ 120530
-//		' ', // NBBJ 120530
-//		'\\>', // NBBJ 120530
+		"<p>",
+		'\\<',
+		' ',
+		'\\>',
 		' ',
 		chr(9),
-		'',
-		"'<0x'.str_pad(dechex(ord($1) + 128),4,'0',STR_PAD_LEFT).'>'",
-		"'<0x'.str_pad(dechex(ord($1) + 192),4,'0',STR_PAD_LEFT).'>'",
-		"'<0x'.str_pad(dechex(ord(html_entity_decode('&'.$1.';'))),4,'0',STR_PAD_LEFT).'>'",
-		'', // NBBJ 
-		'</td>', // NBBJ 120517
-		'', // NBBJ 121012
-		$newLine, // NBBJ 120618
-		$newLine // NBBJ 120523
+		$newLine,
+		"'<0x'.str_pad(dechex(ord($1) +  128),4,'0',STR_PAD_LEFT).'>'",
+		"'<0x'.str_pad(dechex(ord($1) +  192),4,'0',STR_PAD_LEFT).'>'",
+		"'<0x'.str_pad(dechex(ord(html_entity_decode('&'.$1.';')),4,'0',STR_PAD_LEFT).'>'",
 	);
 
 function dirtysuds_content_taggedtext(){
