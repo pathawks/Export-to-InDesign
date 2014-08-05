@@ -3,20 +3,12 @@
 Plugin Name: Export to InDesign
 Plugin URI: https://github.com/DirtySuds/Export-to-InDesign
 Description: Export a post as Adobe TaggedText for import to InDesign
-License: GPL2
 Author: Pat Hawks
-Author URI: http://blog.dirtysuds.com
+Author URI: http://pathawks.com
+License: GPL2
 Version: 1.11
 
-Updates:
-1.11 - Merged some changes from North Bay Business Journal
-1.10 - Improved support for non-English characters
-1.03 - Indent Text
-1.02 - Faster. Now removes shortcodes
-1.01 - Better support for special characters
-1.00 - First Version
-
-  Copyright 2013 Pat Hawks  (email : pat@pathawks.com)
+  Copyright 2014 Pat Hawks  (email : pat@pathawks.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
