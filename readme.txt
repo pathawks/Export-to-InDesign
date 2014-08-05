@@ -4,7 +4,7 @@ Donate link: https://github.com/DirtySuds/Export-to-InDesign
 Tags: export, post, indesign, print
 Requires at least: 3.1
 Tested up to: 3.9.1
-Stable tag: 1.11
+Stable tag: 1.2.0
 
 Export a WordPress post as Adobe TaggedText for import to InDesign
 

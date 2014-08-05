@@ -6,7 +6,7 @@ Description: Export a post as Adobe TaggedText for import to InDesign
 Author: Pat Hawks
 Author URI: http://pathawks.com
 License: GPL2
-Version: 1.11
+Version: 1.2.0
 
   Copyright 2014 Pat Hawks  (email : pat@pathawks.com)
 
