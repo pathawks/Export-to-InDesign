@@ -1,5 +1,5 @@
 === Export to InDesign ===
-Contributors: pathawks, jquackenbush
+Contributors: pathawks, jquackenbush, Kawauso
 Donate link: https://github.com/DirtySuds/Export-to-InDesign
 Tags: export, post, indesign, print
 Requires at least: 3.1
