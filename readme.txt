@@ -31,7 +31,7 @@ If you come across this, please email the TaggedText file and a link to the live
 
 = Something is broken, or I have a great idea. =
 
-Please create an issue on the [GitHub page](https://github.com/DirtySuds/Export-to-InDesign/issues).
+Please create an issue on the [GitHub page](https://github.com/pathawks/Export-to-InDesign/issues).
 Creating a pull request with a fix is an even better option.
 
 
