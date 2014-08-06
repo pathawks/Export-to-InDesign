@@ -2,6 +2,8 @@
 Contributors: pathawks, jquackenbush, Kawauso
 Donate link: https://github.com/DirtySuds/Export-to-InDesign
 Tags: export, post, indesign, print
+License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.1
 Tested up to: 3.9.1
 Stable tag: 1.2.0
