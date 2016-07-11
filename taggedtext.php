@@ -7,7 +7,7 @@ if ($options['outputFormat'])
 else
 	$outputFormat       = '<ANSI-MAC>';
 
-if ($options['outputFormat']=='<ANSI-MAC>')
+if ($outputFormat=='<ANSI-MAC>')
 	$newLine            = "\x0a";
 else
 	$newLine            = "\x0d\x0a";
