@@ -30,7 +30,7 @@ include( plugin_dir_path( __FILE__ ) . 'settings.php' );
 
 /* Define the custom box */
 add_action('admin_init', 'dirtysuds_export_html_box', 1);
-add_action('single_template', 'dirtysuds_export_html');
+add_action('wp_ajax_sdeid', 'dirtysuds_export_html');
 
 /* Adds a box to the main column on the Post and Page edit screens */
 function dirtysuds_export_html_box() {
@@ -40,28 +40,43 @@ function dirtysuds_export_html_box() {
 /* Prints the box content */
 function dirtysuds_export_html_box_inner($post, $metabox) {
 
+	$url = add_query_arg( array(
+		'action' => 'sdeid',
+		'id'     => get_the_ID(),
+	), admin_url( 'admin-ajax.php' ) );
+
 	echo
 		'<div class="inside" style="margin:0;padding:6px 0")>',
 		'<a class="button" style="margin-top:-4px;float:right" target="_blank" href="',
-		get_permalink($post),'?export=print">Print</a>',
+		add_query_arg( 'export', 'print', $url ),
+		'">Print</a>',
 		'<a class="button" href="',
-		get_permalink($post),'?export=taggedtext">Export to InDesign</a>';
+		add_query_arg( 'export', 'taggedtext', $url ),
+		'">Export to InDesign</a>';
 
 //	echo '<a href="#post_status" style="margin:16px 0 0;display:block">Options</a>';
 
 	echo '</div>';
 }
 
-function dirtysuds_export_html($single_template) {
-	if (strpos(' '.$_SERVER['QUERY_STRING'],'export=taggedtext')) {
-		ob_end_clean();
-		return dirname( __FILE__ ) .'/taggedtext.php';
-	} else if (strpos(' '.$_SERVER['QUERY_STRING'],'export=print')) {
-		ob_end_clean();
-		return dirname( __FILE__ ) .'/print.php';
-	} else {
-		return $single_template;
+function dirtysuds_export_html() {
+	global $post;
+	$export = isset( $_GET['export'] ) ? wp_unslash( $_GET['export'] ) : '';
+	$post_id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
+
+	if ( empty( $export ) || empty( $post_id ) ) {
+		die();
 	}
+
+	$post = get_post( $post_id );
+
+	if ( 'taggedtext' === $export ) {
+		include __DIR__ . '/taggedtext.php';
+	} elseif ( 'print' === $export ) {
+		include __DIR__ . '/print.php';
+	}
+
+	die();
 }
 
 function dirtysuds_export_html_rate($links,$file) {
